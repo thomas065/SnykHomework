@@ -26,7 +26,6 @@ resource "google_compute_firewall" "allow-tag" {
 
   source_ranges = ["0.0.0.0/0"]
 }
-###############################################################
 
 // Tokyo-Network firewall
 resource "google_compute_firewall" "allow-tokyo-ssh" {
@@ -43,13 +42,13 @@ resource "google_compute_firewall" "allow-tokyo-ssh" {
 }
 
 // tags for Tokyo firewall
- resource "google_compute_firewall" "allow-http" {
-   name    = "allow-http"
-   network = google_compute_network.tokyonetwork.name
-   allow {
-     protocol = "tcp"
-     ports    = ["80"]
-   }
-   target_tags = ["tokyonetwork-web"]
-   source_ranges = ["0.0.0.0/0"]
- }
+resource "google_compute_firewall" "allow-http" {
+  name    = "allow-http"
+  network = google_compute_network.tokyonetwork.name
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+  target_tags   = ["tokyonetwork-web"]
+  source_ranges = ["0.0.0.0/0"]
+}

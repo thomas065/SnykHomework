@@ -11,7 +11,7 @@ resource "google_compute_region_instance_group_manager" "app" {
   depends_on         = [google_compute_router_nat.twism-nat]
   name               = "twism-mig"
   base_instance_name = "app"
-  target_size = 2
+  target_size        = 2
   #region = "" (optional if provider default is set)
 
   # Compute zones to be used for VM creation
