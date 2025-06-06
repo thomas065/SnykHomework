@@ -58,5 +58,5 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -no-color -input=false
+      run: terraform plan -destroy -input=false
       working-directory: ../../
