@@ -7,6 +7,10 @@ on:
     - main
     - alternate-universe
 
+  push:
+    branches:
+    - main
+
 jobs:
   terraform:
     name: 'Terraform'
