@@ -45,7 +45,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: cd ../.. && terraform init
+      run: cd ../.. && terraform init -backend=false
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
@@ -53,7 +53,8 @@ jobs:
 
     # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
     - name: Terraform Validate
-      run: terraform validate -check
+      run: terraform validate
+      working-directory: cd ../../
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
