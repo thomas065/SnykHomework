@@ -53,7 +53,8 @@ jobs:
 
     # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
     - name: Terraform Validate
-      run: terraform validate -no-color
+      run: terraform validate
+      working-directory: ../../
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
