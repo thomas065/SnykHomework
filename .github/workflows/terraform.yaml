@@ -1,0 +1,55 @@
+name: 'Terraform'
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on:
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - name: Checkout
+      uses: actions/checkout@v4
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+
+    - name: auth to GCP
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: ${{ TF_KEY1 }}
+
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
+    - name: Terraform Validate
+      run: terraform validate
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -input=false
