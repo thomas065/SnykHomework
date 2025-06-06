@@ -37,7 +37,7 @@ jobs:
     - name: auth to GCP
       uses: google-github-actions/auth@v2
       with:
-        credentials_json: ${{ secrets.TF_KEY1 }}
+        github-token: ${{ secrets.TF_KEY1 }}
 
 
     - name: Setup Terraform
@@ -50,14 +50,11 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
-      working-directory: ../../
 
     # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
     - name: Terraform Validate
-      run: terraform validate
-      working-directory: ../../
+      run: terraform validate -no-color
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
-      working-directory: ../../
+      run: terraform plan -no-color -input=false
