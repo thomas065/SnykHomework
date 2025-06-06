@@ -50,6 +50,7 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+      working-directory: ../../
 
     # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
     - name: Terraform Validate
@@ -59,3 +60,4 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
+      working-directory: ../../
