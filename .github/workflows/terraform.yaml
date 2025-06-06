@@ -37,7 +37,7 @@ jobs:
     - name: auth to GCP
       uses: google-github-actions/auth@v2
       with:
-        github-token: ${{ secrets.TF_KEY1 }}
+        credentials_json: ${{ secrets.TF_KEY1 }}
 
 
     - name: Setup Terraform
