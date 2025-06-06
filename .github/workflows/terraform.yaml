@@ -49,14 +49,12 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: terraform fmt -check
+      run: cd ../.. && terraform fmt -check
 
     # Validates the configuration files in a directory, ensuring that they are syntactically valid and internally consistent
     - name: Terraform Validate
-      run: terraform validate
-      working-directory: ../../
+      run: cd ../.. && terraform validate
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -destroy -input=false
-      working-directory: ../../
+      run: cd ../.. && terraform plan -destroy -input=false
